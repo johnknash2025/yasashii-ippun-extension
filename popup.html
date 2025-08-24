@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>やさしい1分</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main>
+      <h1>やさしい1分</h1>
+      <div class="moods">
+        <button data-preset="calm">落ち着きたい</button>
+        <button data-preset="rush">焦っている</button>
+        <button data-preset="tired">疲れた</button>
+      </div>
+      <button id="start">60秒はじめる</button>
+      <div class="stats">
+        <div>Calm Minutes: <span id="calm">0</span></div>
+        <div>記録: <span id="count">0</span> 回</div>
+      </div>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+  </html>
+
