@@ -54,4 +54,6 @@
 
 ## ライセンス
 
-未指定（パブリック公開時に追記）
+GNU Affero General Public License v3.0 (AGPL-3.0-only)
+
+詳細は同梱の `LICENSE` を参照してください。
