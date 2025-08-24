@@ -1,5 +1,7 @@
 // 設定の保存/読込
 
+const elApiBase = document.getElementById("apiBase");
+const elLoginUrl = document.getElementById("loginUrl");
 const elSites = document.getElementById("sites");
 const elCooldown = document.getElementById("cooldown");
 const elThreshold = document.getElementById("threshold");
@@ -9,6 +11,8 @@ const elSaved = document.getElementById("saved");
 function load() {
   chrome.storage.local.get(["settings"], ({ settings }) => {
     const s = settings || {};
+    elApiBase.value = s.apiBase || "";
+    elLoginUrl.value = s.loginUrl || "";
     elSites.value = (s.sites || []).join(", ");
     elCooldown.value = s.cooldownMinutes ?? 90;
     elThreshold.value = s.thresholdPx ?? 5000;
@@ -22,6 +26,8 @@ function save() {
     .map((s) => s.trim())
     .filter(Boolean);
   const settings = {
+    apiBase: (elApiBase.value || "").trim(),
+    loginUrl: (elLoginUrl.value || "").trim(),
     sites,
     cooldownMinutes: Math.max(5, Number(elCooldown.value || 90)),
     thresholdPx: Math.max(1000, Number(elThreshold.value || 5000)),
@@ -35,4 +41,3 @@ function save() {
 
 document.getElementById("save").addEventListener("click", save);
 load();
-

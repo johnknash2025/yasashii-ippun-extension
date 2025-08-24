@@ -23,7 +23,29 @@
 - `background.js` コンテキストメニューなどのバックグラウンド処理
 - `content.js` ページ上の検知/オーバーレイ表示・言い換えモーダル
 - `popup.html|css|js` ツールバーのポップアップUI
-- `options.html|css|js` オプション（対象サイト/頻度/APIキー/音など）
+- `options.html|css|js` オプション（対象サイト/頻度/音・APIベースURL・ログインURL）
+
+## サーバ連携の設定
+
+1. オプションページで以下を設定
+   - APIベースURL: 例 `https://<yourapp>.vercel.app`
+   - ログインURL: 例 `https://<yourapp>.vercel.app/auth/extension`
+2. マニフェストで `identity` 権限を使用しています。`chrome.identity.launchWebAuthFlow` によりログインします。
+3. ログインフローは `redirect_uri` として拡張のリダイレクトURL（`chrome.identity.getRedirectURL()`）を渡し、
+   リダイレクト先のURLハッシュに `#access_token=...` を含めて返す想定です。
+4. ポップアップの「やさしい一言をもらう」から `POST /api/v1/generate` を呼び出します。
+
+## デプロイ手順（概要）
+- サーバ(API): `yasashii-ippun-api` を別リポジトリとしてVercelへデプロイ（README参照）
+- Supabase: スキーマ適用・OAuth許可URL設定（`https://<拡張ID>.chromiumapp.org/*`）
+- Stripe: Product/Price作成、Webhook設定
+- 拡張: オプションで APIベースURL/ログインURL を本番値に設定
+- 公開: Chrome Web Store でパッケージ提出（アイコンや説明文を用意）
+
+## よくある不具合
+- 401: ログイン未完了 or トークン不正 → ログインやり直し
+- CORS: サーバの `ALLOWED_ORIGINS` に `chrome-extension://<拡張ID>` を追加
+- ログインが戻らない: `redirect_uri`/許可リダイレクトURLの不一致を確認
 
 ## 既知の注意
 
@@ -33,4 +55,3 @@
 ## ライセンス
 
 未指定（パブリック公開時に追記）
-
