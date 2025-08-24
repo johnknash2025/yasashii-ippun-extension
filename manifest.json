@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "action": { "default_popup": "popup.html", "default_title": "やさしい1分" },
   "background": { "service_worker": "background.js" },
-  "permissions": ["storage", "contextMenus", "activeTab", "scripting", "alarms"],
+  "permissions": ["storage", "contextMenus", "activeTab", "scripting", "alarms", "identity"],
   "host_permissions": ["http://*/*", "https://*/*"],
   "content_scripts": [
     {
@@ -16,4 +16,3 @@
   ],
   "options_page": "options.html"
 }
-
