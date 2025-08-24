@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>やさしい1分 設定</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <main>
+      <h1>やさしい1分 設定</h1>
+      <label>対象サイト（カンマ区切り）<br />
+        <input id="sites" placeholder="例: youtube.com, x.com, news.yahoo.co.jp" />
+      </label>
+      <label>インターバル（分）<br />
+        <input id="cooldown" type="number" min="5" max="360" value="90" />
+      </label>
+      <label>スクロール距離しきい値（px）<br />
+        <input id="threshold" type="number" min="1000" max="20000" value="5000" />
+      </label>
+      <label><input type="checkbox" id="bell" /> ベル音を鳴らす（未実装）</label>
+      <div class="row">
+        <button id="save">保存</button>
+        <span id="saved" class="muted" aria-live="polite"></span>
+      </div>
+    </main>
+    <script src="options.js"></script>
+  </body>
+  </html>
+
